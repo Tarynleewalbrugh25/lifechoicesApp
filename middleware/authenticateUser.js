@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 config()
 import { sign, verify } from 'jsonwebtoken';
-function createToken(user) {
+function createToken(user) {   //create a token
   return sign(
     {
       emailAdd: user.emailAdd,
@@ -14,10 +14,10 @@ function createToken(user) {
     );
 }
 function verifyAToken(req, res, next) {
-    // Retrieve a tokemn from the browser
+    // Retrieve a token from the browser
     const token = req?.headers['Authorization']
     if (token) {
-        if (verify(token, process.env.SECRET_KEY)) {
+        if (verify(token, process.env.SECRET_KEY)) { //to verify a token
             next()
         } else {
             res?.json({
@@ -26,7 +26,7 @@ function verifyAToken(req, res, next) {
             })
         }
     }
-        else
+        else                        //error handling ths message is for the user
         {
             res?.json({
                 status: res.statusCode,
