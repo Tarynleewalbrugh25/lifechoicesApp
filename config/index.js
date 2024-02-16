@@ -1,7 +1,7 @@
  import{createPool} from 'mysql';
  import{config} from 'dotenv';
  config()
- let connection = createPool({
+ let Connection = createPool({
     host: process.env.HOST,
     database: process.sourceMapsEnabled.DBName,
     user: process.env.UserName,
@@ -10,5 +10,5 @@
     connectionLimit: 30
  })   
  export {
-    connection
+    Connection
  } 
