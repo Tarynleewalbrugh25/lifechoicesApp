@@ -1,7 +1,7 @@
 import { Connection as db } from "../config/index.js"       //in this folder we will be creating our modules basically javascript
 import {hash, compare} from 'bcrypt'                         //encrypts the password 
 import {createToken} from "../middleware/AuthenticateUser.js"   //this is to authenticate the user
-class Users{   
+class users{   
     fetchUsers(req, res) {           //function takes two arguments request and response 
         const qry = `                
         SELECT userID, firstName, lastName, userAge, gender, emailAdd, userPwd, userRole
