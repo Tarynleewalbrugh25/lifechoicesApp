@@ -9,7 +9,7 @@ import express  from 'express'
 import {config} from 'dotenv'
 config()
 const app = express()
-const port = +process.env.PORT || 3500
+const port = +process.env.PORT || 4500
 //middleware
 app.use((req, res, next)=>{
     res.header("Access-Control-Allow-Origin", "*");
