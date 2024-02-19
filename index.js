@@ -9,7 +9,7 @@ import express  from 'express'
 import {config} from 'dotenv'
 config()
 const app = express()
-const port = +process.env.PORT || 2500
+const port = +process.env.PORT || 4000
 //middleware
 app.use((req, res, next)=>{
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,7 +30,7 @@ app.use(
     cors()
 )
 app.get('^/$|/lifechoices', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '/static/index.html'))
+    res.status(200).sendFile(path.join(__dirname, './static/index.html'))
 })
 app.get('/^')
 app.get('^/$')
