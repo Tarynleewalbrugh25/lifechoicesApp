@@ -3,7 +3,7 @@ function errorHandling(err, req, res, next){
         res.json({
             status: err.status || res.
             statusCode || 500,
-            msg: 'An error try again later.'
+            msg: 'An error .'
         })
     }else {
         next()
