@@ -32,10 +32,10 @@ app.use(
 app.get('^/$|/lifechoices', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, './static/index.html'))
 })
-app.get('/^')
-app.get('^/$')
-app.get('/users', userRouter)
-app.get('/products', productRouter)
+// app.use('/^')
+// app.use('^/$')
+app.use('/users', userRouter)
+app.use('/products', productRouter)
 app.use(errorHandling)
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
