@@ -35,6 +35,16 @@ productRouter.post('/addProduct',bodyParser.json(),(req, res)=>{
         })
     }
 })
+productRouter.delete('/removeProduct', bodyParser.json(), (req, res)=>{
+    try{
+        products.removeProduct(req, res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to remove product try again later'
+        })
+    }
+})
 export{
     productRouter
 }
