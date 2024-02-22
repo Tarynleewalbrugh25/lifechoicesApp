@@ -94,6 +94,7 @@ class Users{
                     msg: 'wrong email address'
                 });
             } else {
+                //kdwcnjvfn
                 //validate password
                 const validPass = await compare(userPwd, result[0].userPwd);
                 if (validPass) {
