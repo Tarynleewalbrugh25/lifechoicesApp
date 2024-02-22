@@ -80,41 +80,43 @@ class Users{
         });
     }
     login(req, res) {
-        const {emailAdd, userPwd} = req.body
+        const { emailAdd, userPwd } = req.body;
         const qry = `
-        SELECT userID, firstName, lastName, userAge, gender, emailAAdd, userPwd, userRole
-        FROM Users
-        WHERE emailAdd = '${emailAdd}';
-        `
-        db.query(qry, async(err, result)=>{
-            if(err) throw err
-            if(!result?.length){
+            SELECT userID, firstName, lastName, userAge, gender, emailAAdd, userPwd, userRole
+            FROM Users
+            WHERE emailAdd = '${emailAdd}';
+            `;
+        db.query(qry, async (err, result) => {
+            if (err) throw err;
+            if (!result?.length) {
                 res.json({
                     status: res.statusCode,
-                msg: 'wrong email address'
-                })
-            }else {
+                    msg: 'wrong email address'
+                });
+            } else {
                 //validate password
-                const validPass = await compare (userPwd, result[0].userPwd)
-                if(validPass) {}
+                const validPass = await compare(userPwd, result[0].userPwd);
+                if (validPass) {
                     const token = createToken({
                         emailAdd,
                         userPwd
-                    })
+                    });
                     res.json({
                         status: res.statusCode,
                         msg: 'you are logged in',
                         token,
-                        result: result(0)
-                    })
-                }else {
+                        result: result[0]
+                    });
+                } else {
                     res.json({
                         status: res.statusCode,
                         msg: 'Please provide the correct password.'
-                    })
-                }          
-                })
-        }
+                    });
+                }
+            }
+        });
+    }
+    
     updateUser(req, res) {
         const qry = `
             UPDATE Users

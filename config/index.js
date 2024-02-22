@@ -1,4 +1,4 @@
- import{createPool} from 'mysql';
+ import{createPool} from 'mysql'; //this is mysql make sure to always import it 
  import{config} from 'dotenv';
  config()
  let Connection = createPool({

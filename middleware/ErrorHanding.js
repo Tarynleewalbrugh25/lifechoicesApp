@@ -3,7 +3,7 @@ function errorHandling(err, req, res, next){
         res.json({
             status: err.status || res.
             statusCode || 500,
-            msg: 'An error .'
+            msg: 'An error, try again later .'
         })
     }else {
         next()
@@ -13,3 +13,5 @@ export {
     errorHandling
     
 }
+
+// to know it error handling middleware using keyword next tells us its middleware 
