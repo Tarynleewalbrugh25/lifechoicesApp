@@ -1,42 +1,71 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import { users} from '../model/index.js'
-import { verifyAToken } from '../middleware/AuthenticateUser.js' 
-const userRouter = express.Router()
-//fetch users
-userRouter.get('/', (req, res)=>{
-    try{
-        users.fetchUsers(req, res)
-    }catch(e) {
+import express from 'express';
+import bodyParser from 'body-parser';
+import { users } from '../model/index.js';
+import { verifyAToken } from '../middleware/AuthenticateUser.js';
+const userRouter = express.Router();
+// Fetch users
+userRouter.get('/', (req, res) => {
+    try {
+        users.fetchUsers(req, res);
+    } catch (e) {
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve users'
+        });
+    }
+});
+// Fetch user
+userRouter.get('/:id', (req, res) => {
+    try {
+        users.fetchUser(req, res);
+    } catch (e) {
         res.json({
             status: res.statusCode,
             msg: 'Failed to retrieve user'
-        })
+        });
     }
-    })
-//fetch user
-userRouter.get('/:id', (req, res)=>{
-    try{
-        users.fetchUser(req, res)
-    }catch(e){
+});
+// Add a user
+userRouter.post('/register', bodyParser.json(), (req, res) => {
+    try {
+        users.createUser(req, res);
+    } catch (e) {
         res.json({
             status: res.statusCode,
-            msg: 'Failed to retrieve a user'
-        })
+            msg: 'Failed to create user'
+        });
     }
-})
-
-//add a user
-userRouter.post('/register',bodyParser.json(),(req, res)=>{
+});
+// Delete a user
+userRouter.delete('/deleteUser/:id', bodyParser.json(), (req, res) => {
+    try {
+        users.deleteUser(req, res); // Changed from products to users
+    } catch (e) {
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to remove user, try again later'
+        });
+    }
+});
+// Update a user
+userRouter.patch('/updateUser/:id', bodyParser.json(), (req, res) => {
+    try {
+        users.updateUser(req, res); // Changed from products to users
+    } catch (e) {
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to update user, try again later'
+        });
+    }
+});
+userRouter.post('/login', bodyParser.json(), (req, res)=>{
     try{
-        users.createUser(req, res)
+        users.login(req, res)
     }catch(e) {
         res.json({
             status: res.statusCode,
-            msg: 'failed to create'
+            msg: 'failed to log in'
         })
     }
 })
-export{
-    userRouter, express
-}
+export { userRouter, express };

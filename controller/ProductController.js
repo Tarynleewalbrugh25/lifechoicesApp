@@ -35,13 +35,23 @@ productRouter.post('/addProduct',bodyParser.json(),(req, res)=>{
         })
     }
 })
-productRouter.delete('/removeProduct', bodyParser.json(), (req, res)=>{
+productRouter.delete('/deleteProduct/:id', bodyParser.json(), (req, res)=>{
     try{
-        products.removeProduct(req, res)
+        products.deleteProduct(req, res)
     }catch(e){
         res.json({
             status: res.statusCode,
             msg: 'Failed to remove product try again later'
+        })
+    }
+})
+productRouter.patch('/updateProduct/:id', bodyParser.json(), (req, res)=>{
+    try{
+        products.updateProduct(req, res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to update product try again later'
         })
     }
 })
