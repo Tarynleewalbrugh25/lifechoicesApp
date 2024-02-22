@@ -82,7 +82,7 @@ class Users{
     login(req, res) {
         const { emailAdd, userPwd } = req.body;
         const qry = `
-            SELECT userID, firstName, lastName, userAge, gender, emailAAdd, userPwd, userRole
+            SELECT userID, firstName, lastName, userAge, gender, emailAdd, userPwd, userRole
             FROM User
             WHERE emailAdd = '${emailAdd}';
             `;
