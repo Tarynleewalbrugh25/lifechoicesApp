@@ -83,7 +83,7 @@ class Users{
         const { emailAdd, userPwd } = req.body;
         const qry = `
             SELECT userID, firstName, lastName, userAge, gender, emailAAdd, userPwd, userRole
-            FROM Users
+            FROM User
             WHERE emailAdd = '${emailAdd}';
             `;
         db.query(qry, async (err, result) => {
